@@ -1,8 +1,13 @@
 import React from "react";
-import { Header } from "./components";
+import { Header, Gallery } from "./components";
 
 function App() {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <Gallery />
+    </>
+  );
 }
 
 export default App;
