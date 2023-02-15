@@ -38,10 +38,7 @@ export const usePictures = (
         const picturesIds = data.map((picture) => picture.id);
 
         // This is because we don't want Strict Mode in React to fetch the same data and insert it to the state
-        if (
-          prevPictures.length > 0 &&
-          !prevPictures.some((picture) => picturesIds.includes(picture.id))
-        ) {
+        if (!prevPictures.some((picture) => picturesIds.includes(picture.id))) {
           return [
             ...prevPictures,
             ...data.map((picture) => ({
