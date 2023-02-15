@@ -12,7 +12,7 @@ const getImageUrlWithoutSizes = (url: string): string => {
   let idStartIndex = url.indexOf("id/") + 3; // add 3 to exclude the 'id/' part
   let idEndIndex = url.indexOf("/", idStartIndex);
 
-  return `${url.substring(0, idEndIndex)}/300/200`;
+  return `${url.substring(0, idEndIndex)}/250/200`;
 };
 
 export const GalleryItems = ({

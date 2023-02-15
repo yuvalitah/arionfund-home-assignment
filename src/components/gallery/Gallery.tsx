@@ -6,7 +6,10 @@ import {
   CircularProgress,
   Box,
   Typography,
+  TextField,
 } from "@mui/material";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import moment from "moment";
 import { GalleryItems } from "./GalleryItems";
 import { usePictures } from "../../hooks";
 
@@ -21,12 +24,20 @@ const StyledPaper = styled(Paper)({
 
 export const Gallery = () => {
   const [page, setPage] = useState(1);
-  const [pictures, hasMorePictures, isLoading, error] = usePictures(page);
+  const [time, setTime] = useState(moment().format());
+  const [pictures, hasMorePictures, isLoading, error] = usePictures(page, time);
+
+  const handleTimeChange = (value: string | null) => {
+    if (value) {
+      setTime(value);
+      setPage(1);
+    }
+  };
 
   const observer = useRef<IntersectionObserver>();
 
   const lastImageRef = useCallback(
-    (elem: any) => {
+    (elem: Element) => {
       if (isLoading) return;
 
       if (observer.current) observer.current.disconnect();
@@ -45,6 +56,11 @@ export const Gallery = () => {
 
   return (
     <StyledPaper>
+      <DesktopDatePicker
+        onChange={handleTimeChange}
+        value={time}
+        renderInput={(params) => <TextField {...params} />}
+      />
       {error ? (
         <Box>
           <Typography variant="h3">{error}</Typography>
