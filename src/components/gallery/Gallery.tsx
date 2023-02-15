@@ -6,33 +6,23 @@ import {
   CircularProgress,
   Box,
   Typography,
-  TextField,
 } from "@mui/material";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import moment from "moment";
 import { GalleryItems } from "./GalleryItems";
 import { usePictures } from "../../hooks";
+import { DatePicker } from "../datePicker";
 
-const StyledPaper = styled(Paper)({
+const StyledPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-  //   backgroundColor: theme.palette.mode === "light" ? "#E7EBF0" : "#1A2027",
   flex: 1,
-});
+  borderRadius: 0,
+}));
 
 export const Gallery = () => {
   const [page, setPage] = useState(1);
-  const [time, setTime] = useState(moment().format());
-  const [pictures, hasMorePictures, isLoading, error] = usePictures(page, time);
-
-  const handleTimeChange = (value: string | null) => {
-    if (value) {
-      setTime(value);
-      setPage(1);
-    }
-  };
+  const [pictures, hasMorePictures, isLoading, error] = usePictures(page);
 
   const observer = useRef<IntersectionObserver>();
 
@@ -54,13 +44,11 @@ export const Gallery = () => {
     [isLoading, hasMorePictures]
   );
 
+  const resetPictures = () => setPage(1);
+
   return (
     <StyledPaper>
-      <DesktopDatePicker
-        onChange={handleTimeChange}
-        value={time}
-        renderInput={(params) => <TextField {...params} />}
-      />
+      <DatePicker resetPictures={resetPictures} />
       {error ? (
         <Box>
           <Typography variant="h3">{error}</Typography>
@@ -70,7 +58,7 @@ export const Gallery = () => {
           <Grid
             container
             justifyContent="center"
-            mt={5}
+            mt={10}
             columnSpacing={5}
             rowSpacing={2}
             width="90%"

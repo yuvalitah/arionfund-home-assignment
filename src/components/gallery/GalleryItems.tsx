@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, useMediaQuery } from "@mui/material";
+import { Grid, Box, useMediaQuery, useTheme } from "@mui/material";
 import { Image } from "../../hooks";
 
 interface IGalleryItemsProps {
@@ -19,12 +19,13 @@ export const GalleryItems = ({
   pictures,
   lastImageRef,
 }: IGalleryItemsProps) => {
-  const isBigScreen = useMediaQuery("(min-width: 2000px)");
+  const theme = useTheme();
+  const isBigScreen = useMediaQuery(theme.breakpoints.up("xl"));
 
   return (
     <>
       {pictures.map(({ id, url }, index) => (
-        <Grid key={id} item xs={12} md={6} lg={4} xl={3}>
+        <Grid key={id} item xs={12} sm={6} md={4} lg={3}>
           {pictures.length === index + 1 ? (
             <Box display="flex" justifyContent="center" ref={lastImageRef}>
               <img

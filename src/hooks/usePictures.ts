@@ -18,8 +18,7 @@ export interface Image {
 const BASE_API = "https://picsum.photos/v2/list";
 
 export const usePictures = (
-  page: number,
-  time: string
+  page: number
 ): [Image[], boolean, boolean, string] => {
   const [pictures, setPictures] = useState<Image[]>([]);
   const [error, setError] = useState("");
@@ -66,7 +65,7 @@ export const usePictures = (
 
   useEffect(() => {
     if (hasMorePictures) fetchPictures(page);
-  }, [page, hasMorePictures, time]);
+  }, [page, hasMorePictures]);
 
   return [pictures, hasMorePictures, isLoading, error];
 };
