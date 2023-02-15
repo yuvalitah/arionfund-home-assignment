@@ -20,7 +20,8 @@ export const DatePicker = ({ resetPictures }: IDatePickerProps) => {
   };
 
   return (
-    <Box position="fixed" top={APP_BAR_HEIGHT + 20}>
+    // The zIndex helps for rendering this div on top of the other Gallery Items with transitions
+    <Box position="fixed" top={APP_BAR_HEIGHT + 20} zIndex={2}>
       {useMediaQuery(theme.breakpoints.up("sm")) ? (
         <DesktopDatePicker
           label="Date"

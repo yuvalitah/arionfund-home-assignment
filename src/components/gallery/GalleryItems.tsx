@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, Box, useMediaQuery, useTheme, Grow } from "@mui/material";
 import { Image } from "../../hooks";
 
 interface IGalleryItemsProps {
@@ -25,22 +25,24 @@ export const GalleryItems = ({
   return (
     <>
       {pictures.map(({ id, url }, index) => (
-        <Grid key={id} item xs={12} sm={6} md={4} lg={3}>
-          <Box
-            display="flex"
-            justifyContent="center"
-            ref={pictures.length === index + 1 ? lastImageRef : null}
-          >
-            <img
-              style={{
-                display: "flex",
-                flex: isBigScreen ? 1 : 0,
-              }}
-              src={getImageUrlWithoutSizes(url)}
-              alt="gallery item"
-            />
-          </Box>
-        </Grid>
+        <Grow key={id} in timeout={1000}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              ref={pictures.length === index + 1 ? lastImageRef : null}
+            >
+              <img
+                style={{
+                  display: "flex",
+                  flex: isBigScreen ? 1 : 0,
+                }}
+                src={getImageUrlWithoutSizes(url)}
+                alt="gallery item"
+              />
+            </Box>
+          </Grid>
+        </Grow>
       ))}
     </>
   );
