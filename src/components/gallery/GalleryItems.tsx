@@ -26,29 +26,20 @@ export const GalleryItems = ({
     <>
       {pictures.map(({ id, url }, index) => (
         <Grid key={id} item xs={12} sm={6} md={4} lg={3}>
-          {pictures.length === index + 1 ? (
-            <Box display="flex" justifyContent="center" ref={lastImageRef}>
-              <img
-                style={{
-                  display: "flex",
-                  flex: isBigScreen ? 1 : 0,
-                }}
-                src={getImageUrlWithoutSizes(url)}
-                alt="gallery item"
-              />
-            </Box>
-          ) : (
-            <Box display="flex" justifyContent="center">
-              <img
-                style={{
-                  display: "flex",
-                  flex: isBigScreen ? 1 : 0,
-                }}
-                src={getImageUrlWithoutSizes(url)}
-                alt="gallery item"
-              />
-            </Box>
-          )}
+          <Box
+            display="flex"
+            justifyContent="center"
+            ref={pictures.length === index + 1 ? lastImageRef : null}
+          >
+            <img
+              style={{
+                display: "flex",
+                flex: isBigScreen ? 1 : 0,
+              }}
+              src={getImageUrlWithoutSizes(url)}
+              alt="gallery item"
+            />
+          </Box>
         </Grid>
       ))}
     </>
