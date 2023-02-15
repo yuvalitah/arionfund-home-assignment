@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/arionfund-home-assignment/static/css/main.cd548def.css",
+    "main.js": "/arionfund-home-assignment/static/js/main.f02b045d.js",
+    "index.html": "/arionfund-home-assignment/index.html",
+    "main.cd548def.css.map": "/arionfund-home-assignment/static/css/main.cd548def.css.map",
+    "main.f02b045d.js.map": "/arionfund-home-assignment/static/js/main.f02b045d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd548def.css",
+    "static/js/main.f02b045d.js"
+  ]
+}
